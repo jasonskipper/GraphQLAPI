@@ -13,9 +13,15 @@ type Query {
     track:String,
     level:String
     ):[Session]
-    sessionById(id:ID): Session
+    sessionById(id:ID): SessionOrError
     speakers: [Speaker]
     speakerById(id: ID): Speaker
+}
+union SessionOrError = Session | Error
+type Error {
+    code: String
+    message: String
+    token: String
 }
 enum Room {
     Europa
